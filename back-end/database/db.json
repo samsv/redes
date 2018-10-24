@@ -1,0 +1,42 @@
+{
+	"12345678901":
+		{
+			"cpf":"12345678901",
+			"nome":"Cuca",
+			"pass":"password",
+			"nascimento":"10/10/2000",
+			"foto":"image/Cuca.png",
+			"atividade":"inativo"
+		},
+
+	"12345678902":
+		{
+			"cpf":"12345678902",
+			"nome":"Beludo",
+			"pass":"password",
+			"nascimento":"10/10/2005",
+			"foto":"image/Beludo.png",
+			"atividade":"ativo"
+		},
+
+	"12345678903":
+		{
+			"cpf":"12345678903",
+			"nome":"Jalin",
+			"pass":"password",
+			"nascimento":"10/10/1888",
+			"foto":"image/Jalin.png",
+			"atividade":"ativo"
+		},
+
+	"12345678904":
+		{
+			"cpf":"12345678904",
+			"nome":"Rabei",
+			"pass":"password",
+			"nascimento":"10/10/1945",
+			"foto":"image/Rabei.png",
+			"atividade":"inativo"
+		}
+
+}

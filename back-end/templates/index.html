@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nibbas be like - Daaamn</title>
+</head>
+<body id="node-id">
+
+</body>
+
+<script type="text/javascript">
+
+	let url_string = window.location.href
+	let url = new URL(url_string);
+	let message = url.searchParams.get("messages");
+	message = JSON.parse(message.replace(/'/g,'"'));
+	
+	let node = document.getElementById('node-id');
+
+	switch(message.status){
+		case "0":
+			// Aqui vai entrar a carteirinha bonita
+			break;
+		case "1":
+			document.write('<p>Error code 1 - Invalid CPF</p>');
+			break;
+		case "2":
+			document.write('<p>Error code 2 - Invalid Password</p>');
+			break;
+		case "3":
+			document.write('<p>Error code 3 - Inactive user</p>');
+			break;
+		case "4":
+			document.write('<p>Error code 4 - No foto</p>');
+			break;
+		case "5":
+			document.write('<p>Error code 5 - Missing Information</p>');
+			break;
+	}
+
+</script>
+
+</html>
