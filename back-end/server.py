@@ -64,7 +64,10 @@ def carteirinha():
 	user = json.loads(user.replace("'",'"'))
 
 	if not user['status']:
-		return "<img src=\"static/"+ user["foto"] + "\"/>"
+		html = "<img src=\"static/"+ user["foto"] + "\">"
+		html += "<img src=\"static/"+user["nome"]+".png\">"
+		print html
+		return html
 
 	else: 
 		return "<p>Error "+ str(user["status"])	+" : "+user["msg"]+"</p>"
