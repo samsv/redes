@@ -18,24 +18,28 @@ def login():
 		password = request.form["password"]
 
 		if user not in data:
-			return redirect(url_for("carteirinha",messages={"status" : "1"}))
+			return redirect(url_for("carteirinha",messages={"status" : 1}))
 
 		data = {str(field) : str(data[user][field]) for field in data[user]}
 
 		if data["pass"] != password:
-			data["status"] = "2"
+			data["status"] = 2
+			data["msg"] = "Wrong password"
 
 		elif data["atividade"] == "inativo":
-			data["status"] = "3"
+			data["status"] = 3
+			data["msg"] = "Inactive user"
 
 		elif data["foto"] == "":
-			data["status"] = "4"
+			data["status"] = 4
+			data["msg"] = "No photo"
 
 		elif any("" == data[field] for field in data):
-			data["status"] = "5"
+			data["status"] = 5
+			data["msg"] = "Missing atribute"
 
 		else:
-			data["status"] = "0"
+			data["status"] = 0
 
 			qr = qrcode.QRCode(
 				    version = 1,
@@ -56,7 +60,16 @@ def carteirinha():
 	"""
 		Parte do front-end que renderiza a carteirinha
 	"""
-	return render_template("index.html")
+	user = request.args.get('messages')
+	user = json.loads(user.replace("'",'"'))
+
+	if not user['status']:
+		return "<img src=\"static/"+ user["foto"] + "\"/>"
+
+	else: 
+		return "<p>Error "+ str(user["status"])	+" : "+user["msg"]+"</p>"
+
+	#return render_template("index.html")
 
 if __name__ == "__main__":
 	app.run(debug=True)
