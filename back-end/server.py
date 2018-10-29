@@ -1,26 +1,33 @@
 import json, qrcode
 from flask import Flask, redirect, url_for, request, jsonify, render_template
 
-import smtplib, imgkit
+import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
 
-def send_email(user, pwd, recipient, subject, body):
-	FROM = user
-	TO = recipient if isinstance(recipient, list) else [recipient]
-	SUBJECT = subject
-	TEXT = body
-	# Prepare actual message
-	message = """From: %s\nTo: %s\nSubject: %s\n\n%s
-	""" % (FROM, ", ".join(TO), SUBJECT, TEXT)
-	try:
-	    server = smtplib.SMTP("smtp.gmail.com", 587)
-	    server.ehlo()
-	    server.starttls()
-	    server.login(user, pwd)
-	    server.sendmail(FROM, TO, message)
-	    server.close()
-	    print 'successfully sent the mail'
-	except:
-		print "failed to send mail"
+import imgkit
+
+def SendMail(receiver, body, ImgFileName):
+	img_data = open(ImgFileName, 'rb').read()
+	msg = MIMEMultipart()
+	msg['Subject'] = 'Carteirinha'
+	msg['From'] = 'trabalhoredes20182@gmail.com'
+	msg['To'] = receiver
+
+	text = MIMEText(body)
+	msg.attach(text)
+	image = MIMEImage(img_data, name=os.path.basename(ImgFileName))
+	msg.attach(image)
+
+	s = smtplib.SMTP('smtp.gmail.com', 587)
+	s.ehlo()
+	s.starttls()
+	s.ehlo()
+	s.login('trabalhoredes20182@gmail.com', 'redes123')
+	s.sendmail(msg['From'], msg['To'], msg.as_string())
+	s.quit()
 
 
 app = Flask(__name__)
@@ -92,11 +99,9 @@ def carteirinha():
 		for field in user:
 			print field
 			print user[field]
-			html += '<p>'+ user[field] +'</p>' if field not in ('nome','foto','status') else ''
+			html += '<p>'+ user[field] +'</p>' if field not in ('foto','status') else ''
 
 		html += '<img src="'+user["nome"]+'.png" height="100" width="100">'
-
-		send_email('trabalhoredes20182@gmail.com','redes123',user['email'],'Carteirinha','Carteirinha feita!')
 
 		with open('./static/out.html','w') as out:
 			out.write(html)	
@@ -104,6 +109,8 @@ def carteirinha():
 		imgkit.from_file('./static/out.html','./static/out.jpg')
 
 		html = '<img src="static/out.jpg">'
+
+		SendMail(user['email'],'Carteirinha emitida!', 'static/out.jpg')
 
 		return html
 
