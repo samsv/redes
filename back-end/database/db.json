@@ -2,41 +2,45 @@
 	"12345678901":
 		{
 			"cpf":"12345678901",
-			"nome":"Cuca",
+			"nome":"Amy",
 			"pass":"password",
 			"nascimento":"10/10/2000",
-			"foto":"image/Cuca.png",
-			"atividade":"inativo"
+			"foto":"image/Beludo.jpg",
+			"atividade":"inativo",
+			"email":"trabalhoredes20182@gmail.com"
 		},
 
 	"12345678902":
 		{
 			"cpf":"12345678902",
-			"nome":"Beludo",
+			"nome":"Jake",
 			"pass":"password",
 			"nascimento":"10/10/2005",
-			"foto":"image/Beludo.jpg",
-			"atividade":"ativo"
+			"foto":"image/jake.jpg",
+			"atividade":"ativo",
+			"email":"trabalhoredes20182@gmail.com"
 		},
 
 	"12345678903":
 		{
 			"cpf":"12345678903",
-			"nome":"Jalin",
+			"nome":"Charles",
 			"pass":"password",
 			"nascimento":"10/10/1888",
-			"foto":"image/Jalin.png",
-			"atividade":"ativo"
+			"foto":"image/Beludo.jpg",
+			"atividade":"ativo",
+			"email":"trabalhoredes20182@gmail.com"
 		},
 
 	"12345678904":
 		{
 			"cpf":"12345678904",
-			"nome":"Rabei",
+			"nome":"Rosa",
 			"pass":"password",
 			"nascimento":"10/10/1945",
-			"foto":"image/Rabei.png",
-			"atividade":"inativo"
+			"foto":"image/Beludo.jpg",
+			"atividade":"inativo",
+			"email":"trabalhoredes20182@gmail.com"
 		}
 
 }
